@@ -1,12 +1,5 @@
 #!/usr/bin/awk -f
 
-# BEGIN block to print header
-BEGIN {
-    printf "%-10s %-15s %-20s %-40s\n", "StudentID", "Name", "Overall Grade", "Subject Grades"
-    printf "%-10s %-15s %-20s %-40s\n", "---------", "---------------", "-------------------", "----------------------------------------"
-}
-
-# Main block to process each line
 {
     student_id = $1;
     name = $2;
@@ -14,12 +7,15 @@ BEGIN {
     # Calculate total and average
     total = 0;
     subject_grades = "";
+    failed_any_subject = 0;  # Flag to track if a student failed any subject
+
     for (i = 3; i <= 5; i++) {
         total += $i;
 
         # Check individual subject grade
         if ($i < 40) {
             grade = "Fail";
+            failed_any_subject = 1;  # Mark as failed
         } else if ($i >= 40 && $i < 60) {
             grade = "First Class";
         } else {
@@ -31,7 +27,9 @@ BEGIN {
     average = total / 3;  # Calculate average marks
 
     # Classify overall performance
-    if (average < 40) {
+    if (failed_any_subject == 1) {
+        overall_grade = "Fail";  # Override to Fail if any subject is failed
+    } else if (average < 40) {
         overall_grade = "Fail";
     } else if (average >= 40 && average < 60) {
         overall_grade = "First Class";
@@ -41,11 +39,6 @@ BEGIN {
 
     # Print the result
     printf "%-10s %-15s %-20s %-40s\n", student_id, name, overall_grade, subject_grades;
-}
-
-# END block for cleanup (optional)
-END {
-    print "\nProcessing complete!";
 }
 
 
