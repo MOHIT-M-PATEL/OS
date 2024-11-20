@@ -1,0 +1,117 @@
+1. Change your password to a password you would like to use for the remainder of  the semester.
+mohit@mohit-VirtualBox:~$ passwd 
+
+2. Display the system’s date. 
+mohit@mohit-VirtualBox:~$ date
+
+3. Count the number of lines in the /etc/passwd file. Eho
+mohit@mohit-VirtualBox:~$ wc -l/etc/passwd
+
+4. Find out who else is on the system. 
+mohit@mohit-VirtualBox:~$ who
+ 
+
+5. Direct the output of the man pages for the date command to a file named mydate. 
+mohit@mohit-VirtualBox:~$ man date > mydate
+
+6. Create a subdirectory called mydir. 
+mohit@mohit-VirtualBox:~$ mkdir mydir
+
+7. Move the file mydate into the new subdirectory. 
+mohit@mohit-VirtualBox:~$ mv mydate mydir/
+
+8. Go to the subdirectory mydir and copy the file mydate to a new file called ourdate
+mohit@mohit-VirtualBox:~$ cd mydir
+mohit@mohit-VirtualBox:~/mydir$ cp mydate ourdate
+ 
+9. List the contents of mydir. 
+mohit@mohit-VirtualBox:~/mydir$ ls
+
+10. Do a long listing on the file ourdate and note the permissions. 
+mohit@mohit-VirtualBox:~/mydir$ ls -l ourdate
+
+11. Display the name of the current directory starting from the root. 
+mohit@mohit-VirtualBox:~/mydir$ pwd
+
+12. Move the files in the directory mydir back to the HOME directory. 
+mohit@mohit-VirtualBox:~$ mv mydir/* ~/
+
+13. List all the files in your HOME directory. 
+mohit@mohit-VirtualBox:~$ ls ~/
+
+14. Display the first 5 lines of mydate. 
+mohit@mohit-VirtualBox:~$ head -n 5 mydate
+ 
+15. Display the last 8 lines of mydate. 
+mohit@mohit-VirtualBox:~$ tail -n 8 mydate
+
+16. Remove the directory mydir. 
+mohit@mohit-VirtualBox:~$ rmdir mydir
+
+17. Redirect the output of the long listing of files to a file named list. 
+mohit@mohit-VirtualBox:~$ ls -l > list
+
+18. Select any 5 capitals of states in India and enter them in a file named capitals
+1.  Choose 5 more capitals and enter them in a file named capitals
+2. Choose 5 more  capitals and enter them in a file named capitals
+3. Concatenate all 3 files and  redirect the output to a file named capitals. 
+mohit@mohit-VirtualBox:~$ echo -e
+"Delhi\nMumbai\nKolkata\nChennai\nBengaluru" > capitals1
+mohit@mohit-VirtualBox:~$ echo e
+"Hyderabad\nJaipur\nLucknow\nChadigarh\nGandhinagar" > capitals2
+mohit@mohit-VirtualBox:~$ echo e
+"Shimla\nDehradun\nRanchi\nBhopal\nPatna" >capitals3
+
+
+19. Concatenate the file capitals2 at the end of file capitals.
+mohit@mohit-VirtualBox:~$ cat capitals2 >> capitals
+
+20. Redirect the file capitals as an input to the command “wc –l”. 
+mohit@mohit-VirtualBox:~$ wc -l < capitals
+
+21. Give read and write permissions to all users for the file capitals.
+mohit@mohit-VirtualBox:~$ chmod a+rw capitals
+
+22. Give read permissions only to the owner of the file capitals. Open the file, make  some changes and try to save it. What happens ? 
+mohit@mohit-VirtualBox:~$ chmod 400 capitals
+File cannot be saved since it has read only permission
+
+
+
+
+23. Create an alias to concatenate the 3 files capitals1, capitals2, capitals3 and  redirect the output to a file named capitals. Activate the alias and make it run. 
+mohit@mohit-VirtualBox:~$ alias concat_capitals=’cat capitals1 capitals2 capitals3 > capitals’
+mohit@mohit-VirtualBox:~$ concat_capitals
+
+24. What are the environment variables PATH, HOME and TERM set to on your  terminal ? 
+mohit@mohit-VirtualBox:~$ echo $PATH
+mohit@mohit-VirtualBox:~$ echo $HOME
+mohit@mohit-VirtualBox:~$ echo $TERM
+
+25. Find out the number of times the string “the” appears in the file mydate. 
+mohit@mohit-VirtualBox:~$ grep -o “the” mydate | wc -l
+
+26. Find out the line numbers on which the string “date” exists in mydate. 
+mohit@mohit-VirtualBox:~$ grep -n “date” mydate
+
+27. Print all lines of mydate except those that have the letter “i” in them. 
+mohit@mohit-VirtualBox:~$ grep -v “i” mydate
+
+28. Create the file monotonic as follows: 
+^a?b?b?c?…………..x?y?z$ 
+Run the egrep command for monotonic against /usr/dict/words and search for all 4  letter words. 
+mohit@mohit-VirtualBox:~$ echo '^a?b?b?c?......x?y?z$'>monotonic
+mohit@mohit-VirtualBox:~$ egrep-f monotonic usr/share/dict/words | grep-E '^.{4}$'
+
+29. List 5 states in north east India in a file mystates. List their corresponding capitals  in a file mycapitals. Use the paste command to join the 2 files. 
+mohit@mohit-VirtualBox:~$ echo-e "Assam\nArunachal Pradesh\nNagaland\nMeghalaya\nTripura"> mystates 
+
+mohit@mohit-VirtualBox:~$ echo-e “Dispur\nItanagar\nKohima\nShillong\nAgartala" > mycapitals
+
+mohit@mohit-VirtualBox:~$ paste mystates mycapitalscu
+
+30. Use the cut command to print the 1st and 3rd columns of the /etc/passwd file for all  students in this class. 
+mohit@mohit-VirtualBox:~$ cut-d:-f1,3 /etc/passwd
+
+31. Count the number of people logged in and also trap the users in a file using the tee command. 
+mohit@mohit-VirtualBox:~$ who | tee users.txt |wc-l
